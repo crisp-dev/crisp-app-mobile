@@ -1,0 +1,36 @@
+{
+  "name": "Crisp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "@remobile/react-native-refresh-infinite-listview": "^1.0.3",
+    "alt": "^0.18.4",
+    "base-64": "^0.1.0",
+    "fetch-plus": "3.8.3",
+    "fetch-plus-basicauth": "^3.5.0",
+    "fetch-plus-json": "^3.6.0",
+    "install": "^0.6.1",
+    "isomorphic-fetch": "^2.2.1",
+    "mini-signals": "^1.1.1",
+    "npm": "^3.8.7",
+    "react": "^0.14.8",
+    "react-native": "^0.24.1",
+    "react-native-animatable": "^0.5.2",
+    "react-native-drawer": "^2.0.0",
+    "react-native-extended-stylesheet": "^0.1.7",
+    "react-native-extra-dimensions-android": "^0.17.0",
+    "react-native-gifted-messenger": "^0.1.2",
+    "react-native-loading-spinner-overlay": "0.0.8",
+    "react-native-push-notification": "^1.0.5",
+    "react-native-router-flux": "3.22.23",
+    "react-native-search-bar": "^2.10.0",
+    "react-native-simple-store": "^0.1.0",
+    "react-native-swipeout": "^2.0.12",
+    "react-native-viewpager": "^0.2.1",
+    "socket.io-client": "^1.4.5",
+    "whatwg-fetch": "git+https://github.com/crispchat/fetch.git"
+  }
+}

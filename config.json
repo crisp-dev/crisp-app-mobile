@@ -1,0 +1,5 @@
+{
+  "CRISP_API": "https://api.crisp.im/v1",
+  "CRISP_SOCKET_APP" : "https://relay-app.crisp.im",
+  "CRISP_IMAGE" : "https://image.crisp.im"
+}
