@@ -1,7 +1,7 @@
 Crisp Mobile App
 =========
 
-**Crisp**, mobile app using react-native
+**Crisp**, mobile app using react-native, flux (alt.js), a the Crisp REST Api, and Realtime API
 
 ## How To Build It?
 
