@@ -43,7 +43,7 @@ class MenuPage extends Component {
       <Drawer
         type="static"
         openDrawerOffset={100}
-        styles={{main: {shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3}}}
+        styles={{main: {shadowColor: '#000000', shadowOpacity: 0.5, shadowRadius: 3}}}
         tweenHandler={Drawer.tweenPresets.parallax}
         ref={(ref) => this._drawer = ref}
         content={<MenuContent {...this.props}/>}

@@ -22,6 +22,8 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		19628C291CCC27730084D328 /* libRNSearchBar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19628C281CCC273E0084D328 /* libRNSearchBar.a */; };
 		197BBAF71CCEBBA9001ED651 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 197BBAF61CCEBB7D001ED651 /* libRCTPushNotification.a */; };
+		199D141C1D12DA4500C7C1BA /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 199D141B1D12DA3500C7C1BA /* libRNSound.a */; };
+		199D14201D12DFFB00C7C1BA /* chat_message_receive.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 199D141F1D12DFFB00C7C1BA /* chat_message_receive.mp3 */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +105,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RCTPushNotification;
 		};
+		199D141A1D12DA3500C7C1BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 199D14161D12DA3500C7C1BA /* RNSound.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19825A1E1BD4A89800EE0337;
+			remoteInfo = RNSound;
+		};
 		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
@@ -139,6 +148,8 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		19628C231CCC273E0084D328 /* RNSearchBar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSearchBar.xcodeproj; path = "../node_modules/react-native-search-bar/RNSearchBar.xcodeproj"; sourceTree = "<group>"; };
 		197BBAF11CCEBB7D001ED651 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "/Users/baptistejamin/projects/crisp/crisp-app-react/Crisp/node_modules/react-native/Libraries/WebSocket/../PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<absolute>"; };
+		199D14161D12DA3500C7C1BA /* RNSound.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
+		199D141F1D12DFFB00C7C1BA /* chat_message_receive.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chat_message_receive.mp3; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				199D141C1D12DA4500C7C1BA /* libRNSound.a in Frameworks */,
 				197BBAF71CCEBBA9001ED651 /* libRCTPushNotification.a in Frameworks */,
 				19628C291CCC27730084D328 /* libRNSearchBar.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -249,6 +261,7 @@
 		13B07FAE1A68108700A75B9A /* Crisp */ = {
 			isa = PBXGroup;
 			children = (
+				199D141F1D12DFFB00C7C1BA /* chat_message_receive.mp3 */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -282,6 +295,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		199D14171D12DA3500C7C1BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				199D141B1D12DA3500C7C1BA /* libRNSound.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +314,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				199D14161D12DA3500C7C1BA /* RNSound.xcodeproj */,
 				197BBAF11CCEBB7D001ED651 /* RCTPushNotification.xcodeproj */,
 				19628C231CCC273E0084D328 /* RNSearchBar.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -460,6 +482,10 @@
 					ProductGroup = 19628C241CCC273E0084D328 /* Products */;
 					ProjectRef = 19628C231CCC273E0084D328 /* RNSearchBar.xcodeproj */;
 				},
+				{
+					ProductGroup = 199D14171D12DA3500C7C1BA /* Products */;
+					ProjectRef = 199D14161D12DA3500C7C1BA /* RNSound.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -540,6 +566,13 @@
 			remoteRef = 197BBAF51CCEBB7D001ED651 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		199D141B1D12DA3500C7C1BA /* libRNSound.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSound.a;
+			remoteRef = 199D141A1D12DA3500C7C1BA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -568,6 +601,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				199D14201D12DFFB00C7C1BA /* chat_message_receive.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -673,6 +707,35 @@
 				);
 				INFOPLIST_FILE = Crisp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTActionSheet.build/Release-iphonesimulator/RCTActionSheet.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTActionSheet.build/Release-iphonesimulator/RCTActionSheet.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTGeolocation.build/Release-iphonesimulator/RCTGeolocation.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTGeolocation.build/Release-iphonesimulator/RCTGeolocation.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTImage.build/Release-iphonesimulator/RCTImage.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTImage.build/Release-iphonesimulator/RCTImage.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTLinking.build/Release-iphonesimulator/RCTLinking.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTLinking.build/Release-iphonesimulator/RCTLinking.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTNetwork.build/Release-iphonesimulator/RCTNetwork.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTNetwork.build/Release-iphonesimulator/RCTNetwork.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTPushNotification.build/Release-iphonesimulator/RCTPushNotification.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTPushNotification.build/Release-iphonesimulator/RCTPushNotification.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTSettings.build/Release-iphonesimulator/RCTSettings.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTSettings.build/Release-iphonesimulator/RCTSettings.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTText.build/Release-iphonesimulator/RCTText.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTText.build/Release-iphonesimulator/RCTText.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTVibration.build/Release-iphonesimulator/RCTVibration.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTVibration.build/Release-iphonesimulator/RCTVibration.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTWebSocket.build/Release-iphonesimulator/RCTWebSocket.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTWebSocket.build/Release-iphonesimulator/RCTWebSocket.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/React.build/Release-iphonesimulator/React.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/React.build/Release-iphonesimulator/React.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RNSearchBar.build/Release-iphonesimulator/RNSearchBar.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RNSearchBar.build/Release-iphonesimulator/RNSearchBar.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Products/Debug-iphonesimulator",
+					"$(PROJECT_DIR)/build/Build/Products/Release-iphonesimulator",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = im.crisp.app;
 				PRODUCT_NAME = Crisp;
@@ -696,6 +759,35 @@
 				);
 				INFOPLIST_FILE = Crisp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTActionSheet.build/Release-iphonesimulator/RCTActionSheet.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTActionSheet.build/Release-iphonesimulator/RCTActionSheet.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTGeolocation.build/Release-iphonesimulator/RCTGeolocation.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTGeolocation.build/Release-iphonesimulator/RCTGeolocation.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTImage.build/Release-iphonesimulator/RCTImage.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTImage.build/Release-iphonesimulator/RCTImage.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTLinking.build/Release-iphonesimulator/RCTLinking.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTLinking.build/Release-iphonesimulator/RCTLinking.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTNetwork.build/Release-iphonesimulator/RCTNetwork.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTNetwork.build/Release-iphonesimulator/RCTNetwork.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTPushNotification.build/Release-iphonesimulator/RCTPushNotification.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTPushNotification.build/Release-iphonesimulator/RCTPushNotification.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTSettings.build/Release-iphonesimulator/RCTSettings.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTSettings.build/Release-iphonesimulator/RCTSettings.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTText.build/Release-iphonesimulator/RCTText.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTText.build/Release-iphonesimulator/RCTText.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTVibration.build/Release-iphonesimulator/RCTVibration.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTVibration.build/Release-iphonesimulator/RCTVibration.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTWebSocket.build/Release-iphonesimulator/RCTWebSocket.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RCTWebSocket.build/Release-iphonesimulator/RCTWebSocket.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/React.build/Release-iphonesimulator/React.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/React.build/Release-iphonesimulator/React.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RNSearchBar.build/Release-iphonesimulator/RNSearchBar.build/Objects-normal/i386",
+					"$(PROJECT_DIR)/build/Build/Intermediates/RNSearchBar.build/Release-iphonesimulator/RNSearchBar.build/Objects-normal/x86_64",
+					"$(PROJECT_DIR)/build/Build/Products/Debug-iphonesimulator",
+					"$(PROJECT_DIR)/build/Build/Products/Release-iphonesimulator",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = im.crisp.app;
 				PRODUCT_NAME = Crisp;

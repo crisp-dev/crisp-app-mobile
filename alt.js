@@ -2,7 +2,6 @@ import Alt                    from "alt";
 import Config                 from "./config.json";
 import {createClient}         from "fetch-plus";
 import plusJson               from "fetch-plus-json";
-import whatwg_fetch           from "whatwg-fetch";
 
 /* Hack to boot socket io */
 window.navigator.userAgent = "react-native";
@@ -14,10 +13,8 @@ class CrispAlt extends Alt {
     this.logged = false;
     this.user_id = null;
     this.current_session_id = "";
-    whatwg_fetch.timeout = 4;
     this.client = createClient(Config.CRISP_API, {
-      timeout : 4000,
-      fetch   : whatwg_fetch
+      timeout : 4000
     });
     this.client.addMiddleware(plusJson());
 

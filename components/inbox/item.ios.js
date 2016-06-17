@@ -156,6 +156,9 @@ class ConversationItem extends Component {
       website_id
     } = this.props;
 
+    if (!meta)
+      meta = {};
+
     var avatarUrl = AvatarUtil.format("visitor", session_id);
     var containerClass = styles.containerDefault;
     var avatarClass = styles.avatarOffline;
@@ -180,7 +183,7 @@ class ConversationItem extends Component {
       autoClose: true,
       backgroundColor: "#F06074",
       onPress: () => {
-        this._deleteConversation(website_id, session_id)
+        this._deleteConversation(website_id, session_id);
       }
     }];
 
@@ -190,7 +193,7 @@ class ConversationItem extends Component {
       autoClose: true,
       backgroundColor: "#9BD956",
       onPress: () => {
-        this._resolveConversation(website_id, session_id)
+        this._resolveConversation(website_id, session_id);
       }
     }];
 

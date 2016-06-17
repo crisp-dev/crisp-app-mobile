@@ -1,6 +1,7 @@
 import alt                 from "../alt";
 import NotificationsUtils  from "../utils/notifications";
 import ConversationsApi    from "../api/conversations";
+import firstBy             from "thenby";
 
 class ConversationsStore {
 
@@ -10,6 +11,15 @@ class ConversationsStore {
     this.ConversationsActions = alt.getActions("ConversationsActions");
     this.bindActions(this.ConversationsActions);
     this.conversations = {};
+  }
+
+  orderConversations(websiteId) {
+    if (this.conversations[websiteId]) {
+      this.conversations[websiteId].sort(
+        firstBy("status")
+        .thenBy("updated_at", -1)
+      );
+    }
   }
 
   conversationsLoaded(event) {
@@ -36,6 +46,7 @@ class ConversationsStore {
         return;
       }
     }
+    this.conversations[event.website_id].unshift(event.conversation);
   }
 
   messageReceived(event) {
@@ -53,7 +64,16 @@ class ConversationsStore {
         if (!this.conversations[event.website_id][index].messages) {
           this.conversations[event.website_id][index].messages = [];
         }
-        this.conversations[event.website_id][index].messages.push(event);
+        timestamp =  this.conversations[event.website_id][index].messages.find(
+          function(message) {
+            return message.timestamp === event.timestamp;
+          }
+        );
+
+        if (!timestamp) {
+          this.conversations[event.website_id][index].messages.push(event);
+        }
+        this.orderConversations(event.website_id);
         if (typeof event.content === "string") {
           this.conversations[event.website_id][index].last_message =
             event.content;
@@ -73,6 +93,8 @@ class ConversationsStore {
       status : 0,
       state : "pending"
     });
+    this.orderConversations(event.website_id);
+
     setTimeout(function() {
       ConversationsApi.getOne(event.website_id, event.session_id);
     }, 500);
@@ -126,6 +148,7 @@ class ConversationsStore {
         event.session_id) {
         this.conversations[event.website_id][index].state = state;
         this.conversations[event.website_id][index].status = status;
+        this.orderConversations(event.website_id);
         return;
       }
     }
@@ -224,10 +247,12 @@ class ConversationsStore {
           this.conversations[event.website_id][index]
           .meta.pages = [];
         }
-        event.pages.forEach(page => {
-          this.conversations[event.website_id][index]
-          .meta.pages.push(page);
-        });
+        if (event.pages) {
+          event.pages.forEach(page => {
+            this.conversations[event.website_id][index]
+            .meta.pages.push(page);
+          });
+        }
         return;
       }
     }

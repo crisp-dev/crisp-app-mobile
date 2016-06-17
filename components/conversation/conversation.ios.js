@@ -1,6 +1,7 @@
 import alt                  from "../../alt";
 import ConversationsApi     from "../../api/conversations";
 import AvatarUtil           from "../../utils/avatar";
+import DateUtil             from "../../utils/date";
 import GiftedMessenger      from "react-native-gifted-messenger";
 import ResolveBar           from "./resolve-bar";
 import MiniSignal           from 'mini-signals';
@@ -44,9 +45,22 @@ class ConversationPage extends Component {
     ConversationsApi.getOne(this.website_id, this.session_id);
     this.ConversationsStore.listen( this._onChange.bind(this) );
     this.binding = ConversationPageSignal.add(this.goToUserInformations.bind(this));
+
+    let me = alt.getStore('UserStore').getProfile();
+
+    ConversationsApi.setOpened(this.website_id, this.session_id, me);
+
+    this.operator_refresh = setInterval(() => {
+      ConversationsApi.setOpened(this.website_id, this.session_id, me);
+    }, 60000);
+
   }
 
   componentWillUnmount() {
+    if (this.operator_refresh) {
+      clearInterval(this.operator_refresh);
+    }
+
     this._isMounted = false;
     this.ConversationsStore.unlisten( this._onChange.bind(this) );
     this.binding.detach();
@@ -78,16 +92,19 @@ class ConversationPage extends Component {
         message.text = _raw_message.content.url;
       message.name = conversation.meta.nickname;
       message.position = _raw_message.from === 'operator' ? 'right' : 'left';
-      if (message.timestamp)
-        message.date =  new Date(message.timestamp);
+      if (_raw_message.timestamp)
+        message.date =  _raw_message.timestamp;
       else
         message.date = Date.now();
+
       if (message.fingerprint)
         message.uniqueId = Math.abs(message.fingerprint);
       else
         message.uniqueId = Math.round(Math.random() * 10000);
       if (_raw_message.from !== 'operator' && index == max_index)
         message.image = {uri: AvatarUtil.format("visitor", this.session_id)};
+      if (message.read === true)
+         message.status = 'Seen';
       messages.push(message);
       index++;
     });
@@ -151,6 +168,14 @@ class ConversationPage extends Component {
     });
   }
 
+  renderDate(rowData = {}) {
+    return (
+      <Text style={{color: '#CCCCCC', fontSize: 12, textAlign: 'center', marginBottom: 8}}>
+        {DateUtil.format(rowData.date)}
+      </Text>
+    );
+  }
+
   render() {
     return (
       <View style={{marginTop: Navigator.NavigationBar.Styles.General.NavBarHeight + 20}}>
@@ -175,6 +200,8 @@ class ConversationPage extends Component {
           senderImage={null}
           displayNames={true}
           parseText={true}
+          dateLocale={"en"}
+          renderCustomDate={this.renderDate}
           handlePhonePress={this.handlePhonePress}
           handleUrlPress={this.handleUrlPress}
           handleEmailPress={this.handleEmailPress}

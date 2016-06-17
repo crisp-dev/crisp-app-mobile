@@ -154,6 +154,9 @@ class ConversationItem extends Component {
       website_id
     } = this.props;
 
+    if (!meta)
+      meta = {};
+
     var avatarUrl = AvatarUtil.format("visitor", session_id);
     var containerClass = styles.containerDefault;
     var avatarClass = styles.avatarOffline;

@@ -159,7 +159,7 @@ let InboxPage = React.createClass({
   },
   render() {
     return (
-      <View style={{marginTop: 60, flex:1, backgroundColor: '#EEEEEE'}}>
+      <View style={{marginTop: 40, flex:1, backgroundColor: '#EEEEEE'}}>
           <ListView
             refreshControl={
               <RefreshControl

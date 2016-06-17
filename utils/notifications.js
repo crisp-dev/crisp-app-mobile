@@ -1,10 +1,18 @@
 import UserApi            from "../api/user";
 import Store              from "react-native-simple-store";
 import PushNotification   from "react-native-push-notification";
-import alt                from '../alt';
+import alt                from "../alt";
+import Sound              from "react-native-sound";
 
 class NotificationsUtils {
   configure() {
+
+    this.sound = new Sound(
+      'chat_message_receive.mp3',
+      Sound.MAIN_BUNDLE,
+      () => {}
+    );
+
     PushNotification.configure({
       onRegister : (token) => {
         this.is_subscribed().catch(() => {
@@ -40,6 +48,10 @@ class NotificationsUtils {
   }
 
   notify(event) {
+    if (this.sound) {
+      this.sound.play();
+    }
+
     if (event.session_id != alt.current_session_id) {
       PushNotification.localNotification({
         title : "You received a message",

@@ -167,13 +167,16 @@ let InboxPage = React.createClass({
   render() {
     return (
       <View style={{marginTop: 60, flex:1, backgroundColor: '#EEEEEE'}}>
-        <SearchBar
-          ref='searchBar'
-          placeholder='Search'
-          onChangeText={search_text => this.setState({search_text})}
-          onSearchButtonPress={this.onSearch}
-          onCancelButtonPress={this.onSearchStopped}
-        />
+        <View style={{backgroundColor:'rgba(255,255,255, 0.7)'}}>
+          <SearchBar
+            ref='searchBar'
+            placeholder='Search'
+            onChangeText={search_text => this.setState({search_text})}
+            onSearchButtonPress={this.onSearch}
+            onCancelButtonPress={this.onSearchStopped}
+            searchBarStyle={"minimal"}
+          />
+        </View>
         <RefreshInfiniteListView
           ref = {(list) => {this.list = list}}
           dataSource={this.state.conversations_list}

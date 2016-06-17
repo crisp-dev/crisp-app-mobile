@@ -49,6 +49,14 @@ class ConversationsApi {
     return fingerprint;
   }
 
+  setOpened(website_id, session_id, me) {
+    alt.socket.emit("session:set_opened", {
+      website_id      : website_id,
+      session_id      : session_id,
+      operator        : me
+    });
+  }
+
   markAsRead(website_id, session_id, fingerprints) {
     alt.socket.emit("message:acknowledge:read:send", {
       website_id      : website_id,
@@ -63,6 +71,8 @@ class ConversationsApi {
       session_id      : session_id,
       message         : message
     });
+
+    alt.getActions("ConversationsActions").messageReceived(message);
   }
 
   setState(website_id, session_id, state) {

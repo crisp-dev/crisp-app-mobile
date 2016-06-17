@@ -34,13 +34,15 @@ var styles = EStyleSheet.create({
   AppBar: {
     backgroundColor: "#468EE5",
     elevation: 8,
-    shadowColor: "#000000",
+    '@media android': {
+      shadowColor: "#000000",
       shadowOpacity: 0.4,
       shadowRadius: 5,
       shadowOffset: {
         height: 5,
         width: 0
       }
+    }
   },
   AppBarTitle: {
     color: 'white'

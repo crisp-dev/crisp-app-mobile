@@ -4,6 +4,7 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
+import com.zmxv.RNSound.RNSoundPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +44,8 @@ public class MainActivity extends ReactActivity {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
             new ExtraDimensionsPackage(this),
-            mReactNativePushNotificationPackage
+            mReactNativePushNotificationPackage,
+            new RNSoundPackage()
         );
     }
 
