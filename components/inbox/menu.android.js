@@ -1,13 +1,14 @@
-import React              from 'react-native';
-import Drawer             from 'react-native-drawer';
-import InboxPage          from './inbox';
-import MenuContent        from './menu-content';
-import MiniSignal         from "mini-signals";
-import NotificationsUtils from "../../utils/notifications";
+import React                from 'react-native';
+import Drawer               from 'react-native-drawer';
+import InboxPage            from './inbox';
+import MenuContent          from './menu-content';
+import MiniSignal           from "mini-signals";
+import NotificationsUtils   from "../../utils/notifications";
 
 var {
   Component
 } = React;
+
 
 export const MenuPageSignal = new MiniSignal();
 

@@ -66,6 +66,13 @@ class ConversationsApi {
   }
 
   sendMessage(website_id, session_id, message) {
+    alt.track({
+      event_type : "Sent message",
+      event_properties : {
+        source : "mobile",
+      }
+    });
+
     alt.socket.emit("message:send", {
       website_id      : website_id,
       session_id      : session_id,
@@ -76,18 +83,23 @@ class ConversationsApi {
   }
 
   setState(website_id, session_id, state) {
-    alt.socket.emit("session:set_state", {
-      website_id      : website_id,
-      session_id      : session_id,
-      state           : state
+    alt.track({
+      event_type : "Updated conversation state",
+      event_properties : {
+        source : "mobile",
+      }
+    });
+
+    alt.client.patch(["website", website_id, "conversation", session_id, "state"],
+    {
+      body : {
+        state : state
+      }
     });
   }
 
   deleteConversation(website_id, session_id) {
-    alt.socket.emit("session:remove", {
-      website_id      : website_id,
-      session_id      : session_id
-    });
+    alt.client.del(["website", website_id, "conversation", session_id]);
   }
 
   bindEvents() {
@@ -102,6 +114,14 @@ class ConversationsApi {
     alt.socket.on("message:compose:send", event => {
       alt.getActions("ConversationsActions")
         .messageComposing(event);
+    });
+    alt.socket.on("message:acknowledge:read:send", event => {
+      alt.getActions("ConversationsActions")
+        .readMessages(event, "send");
+    });
+    alt.socket.on("message:acknowledge:read:received", event => {
+      alt.getActions("ConversationsActions")
+        .readMessages(event, "received");
     });
     alt.socket.on("session:update_availability", event => {
       alt.getActions("ConversationsActions")

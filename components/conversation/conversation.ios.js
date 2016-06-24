@@ -1,10 +1,10 @@
 import alt                  from "../../alt";
 import ConversationsApi     from "../../api/conversations";
 import AvatarUtil           from "../../utils/avatar";
-import DateUtil             from "../../utils/date";
 import GiftedMessenger      from "react-native-gifted-messenger";
 import ResolveBar           from "./resolve-bar";
 import MiniSignal           from 'mini-signals';
+import BubbleView           from "./bubble";
 import {Actions}            from 'react-native-router-flux';
 
 import React, {
@@ -49,18 +49,9 @@ class ConversationPage extends Component {
     let me = alt.getStore('UserStore').getProfile();
 
     ConversationsApi.setOpened(this.website_id, this.session_id, me);
-
-    this.operator_refresh = setInterval(() => {
-      ConversationsApi.setOpened(this.website_id, this.session_id, me);
-    }, 60000);
-
   }
 
   componentWillUnmount() {
-    if (this.operator_refresh) {
-      clearInterval(this.operator_refresh);
-    }
-
     this._isMounted = false;
     this.ConversationsStore.unlisten( this._onChange.bind(this) );
     this.binding.detach();
@@ -70,7 +61,7 @@ class ConversationPage extends Component {
     this.setState(this._getStateFromStores());
   }
 
-  _getStateFromStores() {
+  getStateFromStores() {
     let conversation =
       alt.getStore('ConversationsStore')
         .getConversation(this.website_id, this.session_id);
@@ -86,25 +77,27 @@ class ConversationPage extends Component {
 
     conversation.messages.forEach((_raw_message) => {
       let message = {};
-      if (typeof _raw_message.content === 'string')
-        message.text = _raw_message.content;
-      else if (_raw_message.type === 'file')
-        message.text = _raw_message.content.url;
-      message.name = conversation.meta.nickname;
-      message.position = _raw_message.from === 'operator' ? 'right' : 'left';
-      if (_raw_message.timestamp)
-        message.date =  _raw_message.timestamp;
-      else
-        message.date = Date.now();
 
-      if (message.fingerprint)
-        message.uniqueId = Math.abs(message.fingerprint);
+      message.content = _raw_message.content;
+      message.type = _raw_message.type;
+
+      message.position = _raw_message.from === 'operator' ? 'right' : 'left';
+
+      message.date =  _raw_message.timestamp || Date.now();
+
+      if (_raw_message.fingerprint)
+        message.uniqueId = Math.abs(_raw_message.fingerprint);
       else
         message.uniqueId = Math.round(Math.random() * 10000);
+
       if (_raw_message.from !== 'operator' && index == max_index)
         message.image = {uri: AvatarUtil.format("visitor", this.session_id)};
-      if (message.read === true)
-         message.status = 'Seen';
+
+      if (_raw_message.read)
+        message.read = true;
+      else
+        message.read = false;
+      message.view = BubbleView;
       messages.push(message);
       index++;
     });
@@ -114,6 +107,7 @@ class ConversationPage extends Component {
 
     if (conversation.composing)
       typingMessage = conversation.excerpt;
+
     return {
       messages: messages,
       typingMessage: typingMessage,
@@ -168,43 +162,19 @@ class ConversationPage extends Component {
     });
   }
 
-  renderDate(rowData = {}) {
-    return (
-      <Text style={{color: '#CCCCCC', fontSize: 12, textAlign: 'center', marginBottom: 8}}>
-        {DateUtil.format(rowData.date)}
-      </Text>
-    );
-  }
-
   render() {
     return (
       <View style={{marginTop: Navigator.NavigationBar.Styles.General.NavBarHeight + 20}}>
         <ResolveBar {...this.props} />
         <GiftedMessenger
           ref={(c) => this._GiftedMessenger = c}
-          styles={{
-            bubbleLeft: {
-              backgroundColor: '#F1F1F1',
-            },
-            bubbleRight: {
-              marginLeft: 70,
-              backgroundColor: '#3395E8',
-            }
-          }}
-
           loadEarlierMessagesButton={false}
           autoFocus={true}
           messages={this.state.messages}
           handleSend={this.handleSend.bind(this)}
           maxHeight={Dimensions.get('window').height - Navigator.NavigationBar.Styles.General.NavBarHeight - 70}
           senderImage={null}
-          displayNames={true}
-          parseText={true}
-          dateLocale={"en"}
-          renderCustomDate={this.renderDate}
-          handlePhonePress={this.handlePhonePress}
-          handleUrlPress={this.handleUrlPress}
-          handleEmailPress={this.handleEmailPress}
+          displayNames={false}
           typingMessage={this.state.typingMessage}
         />
       </View>

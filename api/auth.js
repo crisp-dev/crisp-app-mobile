@@ -17,6 +17,7 @@ class AuthApi {
         (request) => {
           request.options.headers.Authorization = "Basic " + auth_data;
         });
+      alt.socket.disconnect();
       alt.socket.connect();
       this.do_heartbeat();
       alt.socket.emit("authentication", {

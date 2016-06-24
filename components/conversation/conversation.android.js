@@ -1,12 +1,13 @@
 import alt                  from "../../alt";
 import ConversationsApi     from "../../api/conversations";
 import AvatarUtil           from "../../utils/avatar";
-import DateUtil             from "../../utils/date";
 import GiftedMessenger      from "react-native-gifted-messenger";
 import ResolveBar           from "./resolve-bar";
+import BubbleView           from "./bubble";
 import MiniSignal           from 'mini-signals';
 import {Actions}            from "react-native-router-flux";
 import ExtraDimensions      from "react-native-extra-dimensions-android";
+
 import React, {
   Linking,
   Platform,
@@ -77,25 +78,27 @@ class ConversationPage extends Component {
 
     conversation.messages.forEach((_raw_message) => {
       let message = {};
-      if (typeof _raw_message.content === 'string')
-        message.text = _raw_message.content;
-      else if (_raw_message.type === 'file')
-        message.text = _raw_message.content.url;
-      message.name = conversation.meta.nickname;
-      message.position = _raw_message.from === 'operator' ? 'right' : 'left';
-      if (_raw_message.timestamp)
-        message.date =  _raw_message.timestamp;
-      else
-        message.date = Date.now();
 
-      if (message.fingerprint)
-        message.uniqueId = Math.abs(message.fingerprint);
+      message.content = _raw_message.content;
+      message.type = _raw_message.type;
+
+      message.position = _raw_message.from === 'operator' ? 'right' : 'left';
+
+      message.date =  _raw_message.timestamp || Date.now();
+
+      if (_raw_message.fingerprint)
+        message.uniqueId = Math.abs(_raw_message.fingerprint);
       else
         message.uniqueId = Math.round(Math.random() * 10000);
+
       if (_raw_message.from !== 'operator' && index == max_index)
         message.image = {uri: AvatarUtil.format("visitor", this.session_id)};
-      if (message.read === true)
-         message.status = 'Seen';
+
+      if (_raw_message.read)
+        message.read = true;
+      else
+        message.read = false;
+      message.view = BubbleView;
       messages.push(message);
       index++;
     });
@@ -105,6 +108,7 @@ class ConversationPage extends Component {
 
     if (conversation.composing)
       typingMessage = conversation.excerpt;
+
     return {
       messages: messages,
       typingMessage: typingMessage,
@@ -159,60 +163,23 @@ class ConversationPage extends Component {
     });
   }
 
-  renderDate(rowData = {}) {
-    return (
-      <Text style={{color: '#aaaaaa', fontSize: 12, textAlign: 'center', fontWeight: 'bold', marginBottom: 8}}>
-        {DateUtil.format(rowData.date)}
-      </Text>
-    );
-  }
-
   render() {
     return (
-      <View style={{marginTop: Navigator.NavigationBar.Styles.General.NavBarHeight - 14}}>
+      <View style={{marginTop: Navigator.NavigationBar.Styles.General.NavBarHeight}}>
         <ResolveBar {...this.props} />
         <GiftedMessenger
           ref={(c) => this._GiftedMessenger = c}
-          styles={{
-            bubbleLeft: {
-              backgroundColor: '#F1F1F1',
-            },
-            bubbleRight: {
-              marginLeft: 70,
-              backgroundColor: '#3395E8',
-            }
-          }}
-
           loadEarlierMessagesButton={false}
           autoFocus={true}
           messages={this.state.messages}
           handleSend={this.handleSend.bind(this)}
-          maxHeight={Dimensions.get('window').height - Navigator.NavigationBar.Styles.General.NavBarHeight - 70 - ExtraDimensions.get('STATUS_BAR_HEIGHT')}
+          maxHeight={Dimensions.get('window').height - Navigator.NavigationBar.Styles.General.NavBarHeight - 52 - ExtraDimensions.get('STATUS_BAR_HEIGHT')}
           senderImage={null}
-          displayNames={true}
-          parseText={true}
-          renderCustomDate={this.renderDate}
-          handlePhonePress={this.handlePhonePress}
-          handleUrlPress={this.handleUrlPress}
-          handleEmailPress={this.handleEmailPress}
+          displayNames={false}
           typingMessage={this.state.typingMessage}
         />
       </View>
     );
-  }
-
-  handleUrlPress(url) {
-    Linking.openURL(url);
-  }
-
-  // TODO
-  // make this compatible with Android
-  handlePhonePress(phone) {
-
-  }
-
-  handleEmailPress(email) {
-
   }
 
 }

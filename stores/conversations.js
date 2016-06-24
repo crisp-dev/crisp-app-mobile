@@ -73,13 +73,13 @@ class ConversationsStore {
         if (!timestamp) {
           this.conversations[event.website_id][index].messages.push(event);
         }
-        this.orderConversations(event.website_id);
         if (typeof event.content === "string") {
           this.conversations[event.website_id][index].last_message =
             event.content;
         } else {
           this.conversations[event.website_id][index].last_message = "file";
         }
+        this.orderConversations(event.website_id);
         return;
       }
     }
@@ -98,6 +98,10 @@ class ConversationsStore {
     setTimeout(function() {
       ConversationsApi.getOne(event.website_id, event.session_id);
     }, 500);
+  }
+
+  readMessages(event, type) {
+    //Coming
   }
 
   messageComposing(event) {
@@ -244,6 +248,8 @@ class ConversationsStore {
         event.session_id) {
         if (!this.conversations[event.website_id][index]
           .meta) {
+          this.conversations[event.website_id][index]
+          .meta = {};
           this.conversations[event.website_id][index]
           .meta.pages = [];
         }

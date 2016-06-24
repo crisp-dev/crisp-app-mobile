@@ -1,5 +1,6 @@
 {
   "CRISP_API": "https://api.crisp.im/v1",
   "CRISP_SOCKET_APP" : "https://relay-app.crisp.im",
-  "CRISP_IMAGE" : "https://image.crisp.im"
+  "CRISP_IMAGE" : "https://image.crisp.im",
+  "AMPLITUDE" : "fa4974f121eaf6df9833693e99263781"
 }

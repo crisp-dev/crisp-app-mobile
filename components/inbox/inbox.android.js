@@ -2,7 +2,6 @@ import React                   from 'react-native';
 import ConversationItem        from './item';
 import EStyleSheet             from 'react-native-extended-stylesheet';
 import TimerMixin              from 'react-timer-mixin';
-import RefreshInfiniteListView from '@remobile/react-native-refresh-infinite-listview';
 import Spinner                 from 'react-native-loading-spinner-overlay';
 import MiniSignal              from 'mini-signals';
 
@@ -159,7 +158,7 @@ let InboxPage = React.createClass({
   },
   render() {
     return (
-      <View style={{marginTop: 40, flex:1, backgroundColor: '#EEEEEE'}}>
+      <View style={{marginTop: 60, flex:1, backgroundColor: '#EEEEEE'}}>
           <ListView
             refreshControl={
               <RefreshControl

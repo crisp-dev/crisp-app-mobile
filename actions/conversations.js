@@ -5,6 +5,7 @@ var ConversationsActions = alt.generateActions(
   "conversationLoaded",
   "messageReceived",
   "messageComposing",
+  "readMessages",
   "updateAvailability",
   "updateState",
   "updateNickname",

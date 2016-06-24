@@ -6,6 +6,7 @@ import AuthApi        from '../../api/auth';
 import WebsiteUtils   from '../../utils/website';
 import ImgLogo        from './../initiate/images/logo.png';
 import Spinner        from 'react-native-loading-spinner-overlay';
+import alt            from "../../alt";
 
 var {
   Text,
@@ -56,7 +57,7 @@ var styles = EStyleSheet.create({
     width: '80%',
     borderRadius: 1,
     marginBottom: 20,
-    marginLeft: '10%'
+    marginLeft: '5%'
   },
   separator : {
     backgroundColor: '#B9B8BF',
@@ -170,14 +171,30 @@ class LoginPage extends Component {
 
     AuthApi.login(email, password).then(user_id => {
       WebsiteUtils.get_default().then(website => {
+
+        alt.track({
+          event_type : "Logged in",
+          event_properties : {
+            email  : email,
+            source : "mobile",
+            mode   : "standard"
+          },
+          user_properties: {
+            email      : email,
+            last_login : new Date()
+          }
+        });
+
         this.setState({
           loading: false,
           error: false
         });
+
         Actions.navigation({
           title: website.name,
           current_website: website
         });
+
       });
     }).catch((e) => {
       if (this.login_retries != 2) {
