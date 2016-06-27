@@ -6,7 +6,7 @@ class ConversationsApi {
     this.bindEvents();
   }
 
-  getAll(website_id, page = 0, search_query = {}) {
+  getAll(website_id, page = 1, search_query = {}) {
     return alt.client.read(["website", website_id, "conversations", page], {
       query : search_query
     })

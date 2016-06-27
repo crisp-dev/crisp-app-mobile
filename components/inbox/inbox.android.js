@@ -54,7 +54,7 @@ let InboxPage = React.createClass({
 
   is_loading: true,
 
-  page: 0,
+  page: 1,
 
   website_id: null,
 
@@ -116,7 +116,7 @@ let InboxPage = React.createClass({
   },
 
   onRefresh() {
-    this.page = 0;
+    this.page = 1;
     this.loadConversations();
   },
   onInfinite() {
@@ -130,7 +130,7 @@ let InboxPage = React.createClass({
     this.setState({
       search_text: ''
     });
-    this.page = 0;
+    this.page = 1;
     this.loadConversations();
   },
   loadedAllData() {
