@@ -26,9 +26,9 @@ class UserApi {
     });
   }
 
-  addSubscription(subscription) {
-    alt.socket.emit("user:add_subscription", {
-      subscription  : subscription
+  syncNotificationId(notification_id) {
+    alt.socket.emit("user:sync_notification_id", {
+      notification_id  : notification_id
     });
   }
 

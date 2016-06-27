@@ -5,6 +5,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.zmxv.RNSound.RNSoundPackage;
+import com.geektime.reactnativeonesignal.ReactNativeOneSignalPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,7 +46,8 @@ public class MainActivity extends ReactActivity {
             new MainReactPackage(),
             new ExtraDimensionsPackage(this),
             mReactNativePushNotificationPackage,
-            new RNSoundPackage()
+            new RNSoundPackage(),
+            new ReactNativeOneSignalPackage(this)
         );
     }
 

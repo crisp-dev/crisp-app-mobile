@@ -84,10 +84,13 @@ android {
         applicationId "im.crisp.app"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 300001
-        versionName "3.0.1"
+        versionCode 300002
+        versionName "3.0.2"
         ndk {
             abiFilters "armeabi-v7a", "x86"
+            manifestPlaceholders = [manifestApplicationId: "${applicationId}",
+                                onesignal_app_id: "fe8209f2-b4a8-4d79-8cfc-51b5c51a0725",
+                                onesignal_google_project_number: "745709688371"]
         }
     }
     splits {
@@ -136,6 +139,7 @@ dependencies {
     compile project(':ExtraDimensions')
     compile project(':react-native-push-notification')
     compile project(':RNSound')
+    compile project(':react-native-onesignal')
 }
 
 // Run this once to be able to run the application with BUCK

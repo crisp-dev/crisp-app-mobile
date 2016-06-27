@@ -61,7 +61,7 @@ class ConversationPage extends Component {
     this.setState(this._getStateFromStores());
   }
 
-  getStateFromStores() {
+  _getStateFromStores() {
     let conversation =
       alt.getStore('ConversationsStore')
         .getConversation(this.website_id, this.session_id);

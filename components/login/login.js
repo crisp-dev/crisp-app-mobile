@@ -57,7 +57,7 @@ var styles = EStyleSheet.create({
     width: '80%',
     borderRadius: 1,
     marginBottom: 20,
-    marginLeft: '5%'
+    marginLeft: '10%'
   },
   separator : {
     backgroundColor: '#B9B8BF',

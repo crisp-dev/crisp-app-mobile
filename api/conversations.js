@@ -73,11 +73,11 @@ class ConversationsApi {
       }
     });
 
-    alt.socket.emit("message:send", {
-      website_id      : website_id,
-      session_id      : session_id,
-      message         : message
-    });
+    alt.client.add(["website", website_id, "conversation", session_id,
+      "message"], {
+        body : message
+      }
+    );
 
     alt.getActions("ConversationsActions").messageReceived(message);
   }

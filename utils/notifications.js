@@ -1,6 +1,7 @@
 import UserApi            from "../api/user";
 import Store              from "react-native-simple-store";
 import PushNotification   from "react-native-push-notification";
+import OneSignal          from 'react-native-onesignal';
 import alt                from "../alt";
 import Sound              from "react-native-sound";
 
@@ -13,38 +14,19 @@ class NotificationsUtils {
       () => {}
     );
 
-    PushNotification.configure({
-      onRegister : (token) => {
-        this.is_subscribed().catch(() => {
-          let subscription = {
-            registration : {
-              registrationId : token.token
-            },
-            type : "mobile",
-            os : token.os
-          };
-          UserApi.addSubscription(subscription);
-          Store.save("CrispNotifications", {
-            is_subscribed : true,
-            subscription
-          });
-        });
-      },
-      onNotification : function(notification) {
-
-      },
-      senderID : "745709688371",
-      popInitialNotification : true
+    OneSignal.idsAvailable((idsAvailable) => {
+      UserApi.syncNotificationId(idsAvailable.userId);
     });
-  }
 
-  is_subscribed(website) {
-    return Store.get("CrispNotifications").then(notifications => {
-      if (notifications && notifications.is_subscribed === true) {
-        return Promise.resolve();
-      }
-      return Promise.reject({});
+    OneSignal.enableSound(true);
+    OneSignal.enableVibrate(true);
+    OneSignal.requestPermissions({
+      alert : true,
+      badge : true,
+      sound : true
     });
+
+    OneSignal.registerForPushNotifications();
   }
 
   notify(event) {
