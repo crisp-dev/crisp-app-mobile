@@ -25,7 +25,7 @@
     "react-native-extra-dimensions-android": "v0.17.0",
     "react-native-gifted-messenger": "v0.1.4",
     "react-native-loading-spinner-overlay": "0.0.8",
-    "react-native-onesignal": "git+https://git@github.com:crisp-im/react-native-onesignal.git",
+    "react-native-onesignal": "git+https://git@github.com:crisp-dev/react-native-onesignal.git",
     "react-native-push-notification": "v1.0.7",
     "react-native-router-flux": "3.26.24",
     "react-native-search-bar": "v2.11.0",
